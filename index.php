@@ -1,45 +1,30 @@
 <?php
-    //セッションを開始します。
     session_start();
       
-    //基本的に以下は、HTMLのフォームから送信ボタンが押された後の処理です。
-    //送信ボタンが押されるとurlパラメータに?type=confirmationがつきます。
-    //そのURLパラメータを取得できたら、処理に移ります。
-      
-    //GETでURLを取得
     $url = $_GET["type"];
       
-    //$_SESSION["sendkey"]がtrueになっていれば、最後の画面で送信可能に。
     $_SESSION["sendkey"] = "false";
       
-    //もし$urlパラメータにconfirmationが入っていたら実行。
     if($url == "confirmation"){
           
-        //セッションにポストされたデータを保管。
         $_SESSION["mailarea"] = htmlspecialchars($_POST['mailarea'], ENT_QUOTES);
         $_SESSION["namedata"] = htmlspecialchars($_POST['namedata'], ENT_QUOTES);
         $_SESSION["textboxdata"] = htmlspecialchars($_POST['textboxdata'], ENT_QUOTES);
           
-        //エラーがあった時のメッセージが入ります。
         $mailareaErrorMessege = "";
         $namedataErrorMessege = "";
           
-        //以下、バリデーションチェックに入ります。
         if(empty($_SESSION["mailarea"])){
-            //$_SESSION["mailarea"]が空だったら$mailareaErrorMessegeにエラーメッセージを入力。
             $mailareaErrorMessege = "Email is not filled.";
         }elseif(!preg_match('/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/iD', $_SESSION["mailarea"])){
-            //$_SESSION["mailarea"]の内容がメールアドレスじゃなかったらエラーメッセージを入力。
             $mailareaErrorMessege = "This eamil is wrong.";
         };
           
         if(empty($_SESSION["namedata"])){
-            //名前が入力されてなければnamedataErrorMessegeにエラーメッセージを入力。
             $namedataErrorMessege = "Name is not filled.";
         };
           
         if(empty($mailareaErrorMessege)&&empty($namedataErrorMessege)){
-            //エラーメッセージが存在しなければ「確認ページ」にリダイレクト。
             header('Location: confirmation.php');
             exit;
         };  
@@ -268,11 +253,7 @@
                 <dd>
                     <div>
                         <input type="text" name="mailarea"  placeholder="issei_tsuruta@global.engineer" class="inputText mailarea"  value="<?php echo $_SESSION["mailarea"]; ?>" />
-                        <!--入力を確認する際は、下記に入力内容が表示されます-->
-                        <!-- <div class="mailareaConfirmation"></div> -->
-                        <!-- ミスがあった際は、下記にエラーが表示されます
-                        <div class="missmailbox"></div> -->
-                        <!--ミスがあった際は、下記にエラーが表示されます-->
+                        <!-- <div class="missmailbox"></div>  -->
                         <?php if(!empty($mailareaErrorMessege)): ?>
                         <div class="errorbox"><?php echo $mailareaErrorMessege;?></div>
                         <?php endif;?>
@@ -284,9 +265,6 @@
                 <dd>
                     <div>
                         <input type="text" name="namedata"  placeholder="ex) Issei Tsuruta" class="inputText namearea" value="<?php echo $_SESSION["namedata"]; ?>" />
-                        <!-- <div class="namedataConfirmation"></div> -->
-                        <!-- <div class="missnamebox"></div> -->
-                        <!--ミスがあった際は、下記にエラーが表示されます-->
                         <?php if(!empty($namedataErrorMessege)): ?>
                         <div class="errorbox"><?php echo $namedataErrorMessege; ?></div>
                         <?php endif;?>
@@ -303,16 +281,10 @@
                 </dd>
             </dl>
             
-            <!--入力時にはこちらのボタンが表示されます。-->
             <div class="makesurebox">
                 <button class="btnStyle1 submitarea">confirm</button>
             </div>	
             
-            <!-- 確認時にはこちらのボタンが表示されます。最初はクラスdelateareaで非表示に。
-            <div class="delatearea backandsendbox">
-                <button class="btnStyle1 backBtnArea mgb10px">back</button>
-                <button class="btnStyle1 sendBtnArea">send</button>
-            </div> -->
 	    </form>
   </div>
 </section>
@@ -337,19 +309,15 @@
     'use strict';
 
     $(function(){
-        // ボタンの変化処理
         function changeButtons(){
-            // 現在表示中のスライドのナンバーを取得
             let activeSlideNum = $('.slide').index($('.active'));
             let slideCount =  $('.slide').length
-            // 両ボタンを表示
             $('.button').show();
 
-            // 最初のスライドの場合、Prevボタン非表示
             if(activeSlideNum == 0){
             $('.prev').hide();
             // alert(slideCount);
-            }else if(activeSlideNum == slideCount - 1){  // 最後のスライドの場合、Nextボタン非表示
+            }else if(activeSlideNum == slideCount - 1){  
             $('.next').hide();
             // alert("last slide");
             }
@@ -364,16 +332,11 @@
             // }
         }
 
-        // ボタンの変化処理の実行
         changeButtons();
 
-        // Nextボタンクリックイベント
         $('.next').click(function(){
-            // 現在表示中のスライドの要素を取得
             let $activeSlide = $('.active');
-            // 現在表示中のスライドを非表示にする
             $activeSlide.removeClass('active');
-            // 次のスライドを表示する
             $activeSlide.next().addClass('active');
 
             // if(activeSlideNum == $('.slide').length - 1){
@@ -384,19 +347,13 @@
             //     $activeSlide.next().addClass('active');
             // }
 
-            // ボタンの変化処理の実行
             changeButtons();
         });
         
-        // Prevボタンクリックイベント
         $('.prev').click(function(){
-            // 現在表示中のスライドの要素を取得
             let $activeSlide = $('.active');
-            // 現在表示中のスライドを非表示にする
             $activeSlide.removeClass('active');
-            // 前のスライドを表示する
             $activeSlide.prev().addClass('active');
-            // ボタンの変化処理の実行
             changeButtons();
         });
 
@@ -404,9 +361,3 @@
 </script>
 </body>
 </html>
-
-<!-- <script>
-$(function () {  
-    $ ('html,body').animate ( { scrollTop: 0 }, '1'); });
-/usr/bin/bash: wq: command not found
-/usr/bin/bash: q: command not found
