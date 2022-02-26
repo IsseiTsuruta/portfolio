@@ -523,3 +523,9 @@ footer p {
    border: #c0c0c0 1px;
    border-radius: 2px;
 }
+.block ul {
+   padding-top: 10px;
+}
+.block li {
+   padding: 10px 0;
+}
