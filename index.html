@@ -265,17 +265,19 @@
                 <dd>
                     <div>
                         <input type="text" name="namedata"  placeholder="ex) Issei Tsuruta" class="inputText namearea" value="<?php echo $_SESSION["namedata"]; ?>" />
-                        <?php if(!empty($namedataErrorMessege)): ?>
+<!--                         <?php if(!empty($namedataErrorMessege)): ?>
                         <div class="errorbox"><?php echo $namedataErrorMessege; ?></div>
                         <?php endif;?>
-                    </div>
+                    </div> -->
                 </dd>
             </dl>
             <dl>
                 <dt>Comment</dt>
                 <dd>
                     <div>
-                        <textarea name="textboxdata" class="textboxdata textboxarea"><?php echo $_SESSION["textboxdata"]; ?></textarea>
+                        <textarea name="textboxdata" class="textboxdata textboxarea">
+<!-- 				<?php echo $_SESSION["textboxdata"]; ?> -->
+			    </textarea>
                         <div class="textboxdataConfirmation"></div>
                     </div>
                 </dd>
