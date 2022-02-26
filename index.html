@@ -252,11 +252,8 @@
                 <dt>Email address*</dt>
                 <dd>
                     <div>
-                        <input type="text" name="mailarea"  placeholder="issei_tsuruta@global.engineer" class="inputText mailarea"  value="<?php echo $_SESSION["mailarea"]; ?>" />
-                        <!-- <div class="missmailbox"></div>  -->
-                        <?php if(!empty($mailareaErrorMessege)): ?>
-                        <div class="errorbox"><?php echo $mailareaErrorMessege;?></div>
-                        <?php endif;?>
+                        <input type="text" name="mailarea"  placeholder="issei_tsuruta@global.engineer" class="inputText mailarea" placeholder=""/>
+                       
                     </div>
                 </dd>
             </dl>
@@ -264,11 +261,9 @@
                 <dt>Name*</dt>
                 <dd>
                     <div>
-                        <input type="text" name="namedata"  placeholder="ex) Issei Tsuruta" class="inputText namearea" value="<?php echo $_SESSION["namedata"]; ?>" />
-<!--                         <?php if(!empty($namedataErrorMessege)): ?>
-                        <div class="errorbox"><?php echo $namedataErrorMessege; ?></div>
-                        <?php endif;?>
-                    </div> -->
+                        <input type="text" name="namedata"  placeholder="ex) Issei Tsuruta" class="inputText namearea" placeholder=""/>
+                 
+                    </div> 
                 </dd>
             </dl>
             <dl>
@@ -276,7 +271,7 @@
                 <dd>
                     <div>
                         <textarea name="textboxdata" class="textboxdata textboxarea">
-<!-- 				<?php echo $_SESSION["textboxdata"]; ?> -->
+		
 			    </textarea>
                         <div class="textboxdataConfirmation"></div>
                     </div>
