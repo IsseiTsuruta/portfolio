@@ -516,3 +516,10 @@ footer p {
    color: #fff;
    padding: 20px 0;
 }
+.block {
+   text-align: center;
+   margin: 20px auto;
+   padding: 5px;
+   border: #c0c0c0 1px;
+   border-radius: 2px;
+}
